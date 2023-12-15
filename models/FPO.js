@@ -28,7 +28,32 @@ const FPOSchema = new mongoose.Schema({
         type:String,
         enum:['pending','accepted','rejected'],
         default:'pending'
-    }
+    },
+    district:{
+        type:String,
+        required:[true,'Please enter a district'],
+        trim:true
+    },
+    address:{
+        type:String,
+        required:[true,'Please enter an address'],
+        trim:true
+    },
+    pincode:{
+        type:Number,
+        required:[true,'Please enter a pincode'],
+        trim:true
+    },
+    phoneNumber:{
+        type:Number,
+        required:[true,'Please enter a phone number'],
+        trim:true
+    },
+    email:{
+        type:String,
+        required:[true,'Please enter an email'],
+        trim:true
+    },
 
 });
 

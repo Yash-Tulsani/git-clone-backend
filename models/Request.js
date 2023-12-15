@@ -1,19 +1,38 @@
 const mongoose = require('mongoose');
 
 const RequestSchema = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: [true, 'Please enter a user']
+    fpo:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'FPO'
     },
-    type:{
+    applicationNumber:{
         type:String,
-        enum:['register','sell','buy'],
-        required:[true,'Please enter a type']
+        required:[true,'Please enter an application number'],
+        trim:true
     },
-    service: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Service'
+    description:{
+        type:String,
+        required:[true,'Please enter a description'],
+        trim:true,
+        maxlength:[500,'Description cannot be more than 500 characters']
+    },
+    reason:{
+        type:String,
+        required:[true,'Please enter a reason'],
+        trim:true
+    },
+    documents:[
+        {
+            type:String,
+        }
+    ],
+    address:{
+        type:String,
+        required:[true,'Please enter an address'],
+        trim:true
+    },
+    region:{
+        type:String,
     },
     status: {
         type: String,

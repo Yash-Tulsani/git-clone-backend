@@ -20,22 +20,40 @@ const UserSchema = new mongoose.Schema({
         trim: true,
         maxlength: [50, 'Password cannot be more than 50 characters']
     },
+    phoneNumber:{
+        type:Number,
+        required:[true,'Please enter a phone number'],
+        trim:true
+    },
     dateOfBirth: {
         type: Date,
         required: true
     },
     role:{
         type:String,
-        enum:['user','admin','fpo'],
+        enum:['user','admin'],
         default:'user'
     },
-    requests:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Request'
-    }],
     FPO:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'FPO'
+    },
+    address:{
+        type:String,
+        required:[true,'Please enter an address'],
+        trim:true
+    },
+    district:{
+        type:String,
+        trim:true
+    },
+    profilePicture:{
+        type:String,
+    },
+    FPO_Role:{
+        type:String,
+        enum:['head','member'],
+        default:'member'
     }
     
 });
