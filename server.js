@@ -5,7 +5,9 @@ const db=require('./database')
 const router=require('./routes');
 const cors = require('cors')
 
+const GenerateData = require("./models/Generate_Data")
 
+// GenerateData.GenerateData()
 
 const PORT=process.env.PORT || 5000;
 

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const RequestSchema = new mongoose.Schema({
-    fpo:{
+    fpo_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'FPO'
     },
@@ -31,7 +31,7 @@ const RequestSchema = new mongoose.Schema({
         required:[true,'Please enter an address'],
         trim:true
     },
-    region:{
+    district:{
         type:String,
     },
     status: {
@@ -42,7 +42,10 @@ const RequestSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    coordinates: [{
+        type: Number
+    }],
 });
 
 const Request = mongoose.model('Request', RequestSchema);

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const WDCSchema = new mongoose.Schema({
-    FPO:{
+    FPO_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'FPO',
         required:[true,'Please enter an FPO']
@@ -21,10 +21,21 @@ const WDCSchema = new mongoose.Schema({
         type:String,
         trim:true
     },
+    state: {
+        type: String,
+        required: [true, "Please enter a state"]
+    },
     dateRegistered:{
         type:Date,
         default:Date.now
     },
+    status: {
+        type: String,
+        default: "Pending Approval"
+    },
+    coordinates: [{
+        type: Number
+    }],
 });
 
 const WDC = mongoose.model('WDC',WDCSchema);

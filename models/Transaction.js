@@ -26,6 +26,10 @@ const TransactionSchema = new mongoose.Schema({
         type:String,
         trim:true
     },
+    state: {
+        type: String,
+        required: [true, "Please enter the state"]
+    },
     amount: {
         type: Number,
         required: [true, 'Please enter an amount'],
@@ -35,7 +39,10 @@ const TransactionSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    
 });
 
 const Transaction = mongoose.model('Transaction', TransactionSchema);
+
+module.exports = Transaction;

@@ -7,6 +7,10 @@ const UserSchema = new mongoose.Schema({
         trim: true,
         maxlength: [50, 'Name cannot be more than 50 characters']
     },
+    age: {
+        type: Number,
+        required: [true, "Please Enter Age"]
+    },
     email: {
         type: String,
         required: [true, 'Please enter an email'],
@@ -43,10 +47,21 @@ const UserSchema = new mongoose.Schema({
         required:[true,'Please enter an address'],
         trim:true
     },
+    pincode:{
+        type:Number,
+        required:[true,'Please enter a pincode'],
+        trim:true
+    },
     district:{
         type:String,
         trim:true
     },
+    state: {
+        type: String,
+    },
+    coordinates: [{
+        type: Number
+    }],
     profilePicture:{
         type:String,
     },

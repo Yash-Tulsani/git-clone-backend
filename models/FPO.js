@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 
 const FPOSchema = new mongoose.Schema({
-    head:{
+    head_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
+    },
+    head_name: {
+        type: String,
+        required: [true, "Please enter FPO head Name"]
     },
     description:{
         type:String,
@@ -34,14 +38,13 @@ const FPOSchema = new mongoose.Schema({
         required:[true,'Please enter a district'],
         trim:true
     },
+    state:{
+        type: String,
+        required: [true, "Please enter the state"]  
+    },
     address:{
         type:String,
         required:[true,'Please enter an address'],
-        trim:true
-    },
-    pincode:{
-        type:Number,
-        required:[true,'Please enter a pincode'],
         trim:true
     },
     phoneNumber:{
@@ -54,6 +57,9 @@ const FPOSchema = new mongoose.Schema({
         required:[true,'Please enter an email'],
         trim:true
     },
+    coordinates: [{
+        type: Number
+    }],
 
 });
 
