@@ -1,11 +1,24 @@
 const mongoose = require('mongoose');
 
 const ServiceSchema = new mongoose.Schema({
+    WDC:{
+        type: mongoose.Mongoose.Types.ObjectId,
+        ref: 'WDC'
+    },
+    FPO:{
+        type: mongoose.Mongoose.Types.ObjectId,
+        ref: 'FPO'
+    },
     name: {
         type: String,
         required: [true, 'Please enter a name'],
         trim: true,
         maxlength: [50, 'Name cannot be more than 50 characters']
+    },
+    type:{
+        type:String,
+        trim:true,
+        maxlength:[50,'Type cannot be more than 50 characters']
     },
     description: {
         type: String,
@@ -13,27 +26,37 @@ const ServiceSchema = new mongoose.Schema({
         trim: true,
         maxlength: [500, 'Description cannot be more than 500 characters']
     },
+    district:{
+        type:String,
+        required:[true,'Please enter a district'],
+        trim:true
+    },
     price: {
         type: Number,
         required: [true, 'Please enter a price'],
         trim: true,
         maxlength: [50, 'Price cannot be more than 50 characters']
     },
-    image: {
-        type: String,
-        required: [true, 'Please enter an image'],
-        trim: true,
-        maxlength: [50, 'Image cannot be more than 50 characters']
+    quantityLeft:{
+        type:Number,
     },
+    minQuantity:{
+        type:Number,
+    },
+    images: [
+        {
+            type: String,
+        }
+    ],
     category: {
         type: String,
         required: [true, 'Please enter a category'],
         trim: true,
         maxlength: [50, 'Category cannot be more than 50 characters']
     },
-    fpo:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'User'
+    date:{
+        type: Date,
+        default: Date.now
     }
 });
 

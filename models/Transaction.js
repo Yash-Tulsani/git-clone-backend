@@ -2,17 +2,29 @@ const mongoose = require('mongoose');
 
 
 const TransactionSchema = new mongoose.Schema({
-    sender: {
-        type: String,
-        required: [true, 'Please enter a sender'],
-        trim: true,
-        maxlength: [50, 'Sender cannot be more than 50 characters']
+    buyer:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User',
+        required:[true,'Please enter a buyer']
     },
-    receiver: {
-        type: String,
-        required: [true, 'Please enter a receiver'],
-        trim: true,
-        maxlength: [50, 'Receiver cannot be more than 50 characters']
+    seller:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'FPO',
+        required:[true,'Please enter a seller']
+    },
+    WDC:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'WDC',
+        required:[true,'Please enter a WDC']
+    },
+    service:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Service',
+        required:[true,'Please enter a service']
+    },
+    district:{
+        type:String,
+        trim:true
     },
     amount: {
         type: Number,
