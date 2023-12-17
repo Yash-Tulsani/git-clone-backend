@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const ServiceSchema = new mongoose.Schema({
-    WDC:{
-        type: mongoose.Mongoose.Types.ObjectId,
+    WDC_id:{
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'WDC'
     },
-    FPO:{
-        type: mongoose.Mongoose.Types.ObjectId,
+    FPO_id:{
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'FPO'
     },
     name: {
@@ -30,6 +30,10 @@ const ServiceSchema = new mongoose.Schema({
         type:String,
         required:[true,'Please enter a district'],
         trim:true
+    },
+    state: {
+        type: String,
+        required: [true, "Pleae enter your State"]
     },
     price: {
         type: Number,
@@ -57,7 +61,10 @@ const ServiceSchema = new mongoose.Schema({
     date:{
         type: Date,
         default: Date.now
-    }
+    },
+    coordinates: [{
+        type: Number
+    }],
 });
 
 const Service = mongoose.model('Service', ServiceSchema);
