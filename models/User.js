@@ -22,7 +22,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter a password'],
         trim: true,
-        maxlength: [50, 'Password cannot be more than 50 characters']
     },
     phoneNumber:{
         type:Number,
@@ -71,7 +70,7 @@ const UserSchema = new mongoose.Schema({
         default:'member'
     }
     
-});
+}, { timestamps: true });
 
 const User = mongoose.model('User', UserSchema);
 
