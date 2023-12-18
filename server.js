@@ -14,17 +14,19 @@ app.use(cors())
 app.use(express.static('public'));
 app.use(express.json());
 
-app.get("*", (req,res)=>{
-    res.send("Error 404")
-})
+
 app.listen(5000, () => console.log('Server running on port 5000'));
 
 //routes import
 const user = require("./routes/userRoute");
 const auth = require("./routes/authRoute");
+const chat = require("./routes/chatRoute");
+const service = require("./routes/serviceRoute");
 
 app.use('/api/user', user);
 app.use('/api/auth', auth);
+app.use('/api/chat', chat);
+app.use('/api/service', service);
 
 app.use((err,req,res,next) => {
     console.error(err);
@@ -34,6 +36,13 @@ app.use((err,req,res,next) => {
         success: false,
         error : message,
         statusCode: statusCode,
+    })
+})
+
+app.get("*", (req,res)=>{
+    res.status(404).json({
+        message: "Route not found",
+        status: 404
     })
 })
 
