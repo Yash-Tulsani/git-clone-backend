@@ -1,4 +1,5 @@
 const dialogflow = require("@google-cloud/dialogflow");
+
 const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
 const PROJECTID = CREDENTIALS.project_id;
 const CONFIGURATION = {
@@ -27,7 +28,8 @@ const detectIntent = async (languageCode, queryText, sessionid) => {
     const result = responses[0].queryResult;
     console.log(result);
     return {
-        replyText: result.fulfillmentText
+        replyText: result.fulfillmentText,
+        intentName: result.intent.displayName
     }
 }
 
@@ -37,7 +39,8 @@ exports.getMessageReply = async (req,res)=>{
 
     // const reply = await detectIntent("en", req.body.message, "abcd123");
     const reply = {
-        replyText: "This is a default response please try to activate Dialogflow chatbot"
+        replyText: "This is a default response please try to activate Dialogflow chatbot",
+        intentType: "service-near-me"
     }
 
     res.json(reply)
