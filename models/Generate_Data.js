@@ -199,7 +199,7 @@ exports.GenerateData = async ()=>{
         const services = await Service.find({});
         // generateServices(wdcs)
         // const services = await Service.find({});
-        generateTransactions(services, users);
+        // generateTransactions(services, users);
         console.log("Currently Not generating Any Data");
 
     } catch (error) {

@@ -45,7 +45,3 @@ app.get("*", (req,res)=>{
         status: 404
     })
 })
-
-
-
-export default server
