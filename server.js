@@ -10,7 +10,14 @@ GenerateData.GenerateData()
 
 const PORT=process.env.PORT || 5000;
 
-app.use(cors())
+const cors = require("cors");
+
+const corsOptions ={
+    origin: ["http://localhost:3000","https://git-clone-frontend.vercel.app/"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+}
+
+app.use(cors(corsOptions));
 app.use(express.static('public'));
 app.use(express.json());
 
@@ -39,11 +46,11 @@ app.use((err,req,res,next) => {
     })
 })
 
-app.get("*", (req,res)=>{
-    res.status(404).json({
-        message: "Route not found",
-        status: 404
-    })
-})
+// app.get("*", (req,res)=>{
+//     res.status(404).json({
+//         message: "Route not found",
+//         status: 404
+//     })
+// })
 
 module.exports = app;
