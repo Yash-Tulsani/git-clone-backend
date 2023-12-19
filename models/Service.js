@@ -5,9 +5,15 @@ const ServiceSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'WDC'
     },
+    WDC_name: {
+        type: String
+    },
     FPO_id:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'FPO'
+    },
+    FPO_name: {
+        type: String
     },
     name: {
         type: String,

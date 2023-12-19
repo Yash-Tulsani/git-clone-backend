@@ -6,6 +6,9 @@ const WDCSchema = new mongoose.Schema({
         ref:'FPO',
         required:[true,'Please enter an FPO']
     },
+    FPO_name: {
+        type: String
+    },
     name:{
         type:String,
         required:[true,'Please enter a name'],
