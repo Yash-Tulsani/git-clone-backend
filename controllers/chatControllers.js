@@ -37,11 +37,11 @@ exports.getMessageReply = async (req,res)=>{
 
     console.log(req.body);
 
-    // const reply = await detectIntent("en", req.body.message, "abcd123");
-    const reply = {
-        replyText: "This is a default response please try to activate Dialogflow chatbot",
-        intentType: "service-near-me"
-    }
+    const reply = await detectIntent("en", req.body.message, "abcd123");
+    // const reply = {
+    //     replyText: "This is a default response please try to activate Dialogflow chatbot",
+    //     intentType: "service-near-me"
+    // }
 
     res.json(reply)
 }
