@@ -6,7 +6,7 @@ const cors = require('cors')
 
 const GenerateData = require("./models/Generate_Data")
 
-GenerateData.GenerateData()
+// GenerateData.GenerateData()
 
 const PORT=process.env.PORT || 5000;
 
