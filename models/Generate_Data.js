@@ -62,6 +62,7 @@ const generateUsers = async () => {
 
 const generateFPOs = async (users) => {
   const fpos = [];
+  const fpo_names = ["Tambarm FPO","Thiruvanmiyur Farmer Organization"]
   for (let i = 0; i < 2; i++) {
     const fpoHead = users[Math.floor(Math.random() * users.length)];
 
@@ -72,6 +73,7 @@ const generateFPOs = async (users) => {
     }
 
     const fpo = new FPO({
+      name: fpo_names[i],
       head_id: fpoHead._id,
       head_name: fpoHead.name,
       description: 'Sample FPO description',
@@ -98,6 +100,7 @@ const generateWDC = async(FPO)=>{
         const currentFPO = FPO[i];
         const wdc = new WDC({
             FPO_id: currentFPO._id,
+            FPO_name: currentFPO.name,
             name: `Wasteshed ${currentFPO.district}`,
             address: currentFPO.address,
             district: currentFPO.district,
@@ -135,7 +138,9 @@ const generateServices = async (WDC)=> {
 
     const newService = new Service({
       WDC_id: randomWDC._id,
+      WDC_name: randomWDC.name,
       FPO_id:randomWDC.FPO_id,
+      FPO_name: randomWDC.FPO_name,
       name: getRandomService(),
       type: `Service ${Math.floor(Math.random() * 6) + 1}`,
       description: "Temp Description",
@@ -163,9 +168,13 @@ const generateTransactions = async(sevices, usersList)=>{
 
     const newTransaction = new Transaction({
       buyer: buyer._id,
+      buyer_name: buyer.name,
       seller: serv.FPO_id,
+      seller_name: serv.FPO_name,
       WDC: serv.WDC_id,
+      WDC_name: serv.WDC_name,
       service: serv._id,
+      service_name: serv.name,
       district: serv.district,
       state: serv.state,
       amount: Math.floor(Math.random() * 18000) + 2000,
@@ -182,14 +191,15 @@ const generateTransactions = async(sevices, usersList)=>{
 exports.GenerateData = async ()=>{
 
     try {
-        // const fpos = await FPO.find({});
-        // const users = await User.find({});
-        // const wdcs = await WDC.find({});
-        // const services = await Service.find({});
+        const fpos = await FPO.find({});
+        const users = await User.find({});
+        // generateFPOs(users)
+        const wdcs = await WDC.find({});
         // generateWDC(fpos)
+        const services = await Service.find({});
         // generateServices(wdcs)
         // const services = await Service.find({});
-        // generateTransactions(services, users);
+        generateTransactions(services, users);
         console.log("Currently Not generating Any Data");
 
     } catch (error) {

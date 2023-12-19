@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const FPOSchema = new mongoose.Schema({
+    name: {
+        type: String
+    },
     head_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
