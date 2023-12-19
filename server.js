@@ -45,3 +45,5 @@ app.get("*", (req,res)=>{
         status: 404
     })
 })
+
+module.exports = app;
