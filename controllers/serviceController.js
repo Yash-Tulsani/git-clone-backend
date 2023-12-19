@@ -31,7 +31,22 @@ exports.getServiceById = async (req,res)=>{
             error : "Internal Server error",
             statusCode: 500,
         })  
-    }
+    }  
+}
 
-    
+// get all services with limit
+exports.getAllServices = async (req,res)=>{
+    try {
+        const limit = parseInt(req.params.limit);
+        const services = await Service.find().limit(limit).populate(["WDC_id","FPO_id"]);
+        res.json(services)
+
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({
+            success: false,
+            error : "Internal Server error",
+            statusCode: 500,
+        })  
+    }  
 }
