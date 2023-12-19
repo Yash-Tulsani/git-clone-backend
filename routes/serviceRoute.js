@@ -4,4 +4,6 @@ const ServiceRoutes = require('../controllers/serviceController.js');
 
 router.get('/:id', ServiceRoutes.getServiceById);
 
+router.get('/get-all-services/:limit', ServiceRoutes.getAllServices);
+
 module.exports = router;
