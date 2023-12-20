@@ -82,3 +82,13 @@ exports.getWdcAll = async (req,res)=>{
 
     
 }
+
+    
+exports.getAllWDCs = async (req, res) => {
+    try {
+        const wdcs = await WDC.find({});
+        res.json(wdcs)
+    } catch (error) {
+        next(error);
+    }
+}
