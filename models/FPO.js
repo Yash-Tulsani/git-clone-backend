@@ -4,14 +4,14 @@ const FPOSchema = new mongoose.Schema({
     name: {
         type: String
     },
-    head_id:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'User'
-    },
-    head_name: {
-        type: String,
-        required: [true, "Please enter FPO head Name"]
-    },
+    // head_id:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:'User'
+    // },
+    // head_name: {
+    //     type: String,
+    //     required: [true, "Please enter FPO head Name"]
+    // },
     description:{
         type:String,
         required:[true,'Please enter a description'],
@@ -31,11 +31,11 @@ const FPOSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Service'
     }],
-    status:{
-        type:String,
-        enum:['pending','accepted','rejected'],
-        default:'pending'
-    },
+    // status:{
+    //     type:String,
+    //     enum:['pending','accepted','rejected'],
+    //     default:'pending'
+    // },
     district:{
         type:String,
         required:[true,'Please enter a district'],
@@ -57,7 +57,6 @@ const FPOSchema = new mongoose.Schema({
     },
     email:{
         type:String,
-        required:[true,'Please enter an email'],
         trim:true
     },
     coordinates: [{

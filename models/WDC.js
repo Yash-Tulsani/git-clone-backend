@@ -39,6 +39,19 @@ const WDCSchema = new mongoose.Schema({
     coordinates: [{
         type: Number
     }],
+    email: {
+        type: String
+    },
+    phoneNumber: {
+        type: Number
+    },
+    publicInvestment: {
+        type: Number
+    },
+    percentageOccupied: {
+        type: Number,
+        default: 0
+    }
 });
 
 const WDC = mongoose.model('WDC',WDCSchema);

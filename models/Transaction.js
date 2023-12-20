@@ -14,7 +14,7 @@ const TransactionSchema = new mongoose.Schema({
     },
     seller:{
         type:mongoose.Schema.Types.ObjectId,
-        ref: 'FPO',
+        ref: 'User',
         required:[true,'Please enter a seller']
     },
     seller_name: {
