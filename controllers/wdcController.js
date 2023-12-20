@@ -93,3 +93,12 @@ exports.getAllWDCs = async (req, res) => {
         next(error);
     }
 }
+
+exports.getAllWDCsWithPopulate= async (req, res) => {
+    try {
+        const wdcs = await WDC.find({}).populate("FPO_id");
+        res.json(wdcs)
+    } catch (error) {
+        next(error);
+    }
+}

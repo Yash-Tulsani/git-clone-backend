@@ -9,5 +9,6 @@ router.post('/', WdcRoutes.postWdc);
 // const wdcController = require('../controllers/wdcController');
 
 router.get('/get-all-wdcs', WdcRoutes.getAllWDCs);
+router.get('/get-all-wdcs-with-populate', WdcRoutes.getAllWDCsWithPopulate);
 
 module.exports = router;
