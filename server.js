@@ -6,7 +6,7 @@ const cors = require('cors')
 
 const GenerateData = require("./models/Generate_Data")
 
-GenerateData.GenerateData()
+// GenerateData.GenerateData()
 
 const PORT=process.env.PORT || 5000;
 
@@ -22,13 +22,17 @@ const user = require("./routes/userRoute");
 const auth = require("./routes/authRoute");
 const chat = require("./routes/chatRoute");
 const service = require("./routes/serviceRoute");
+const charts = require("./routes/chartRoute");
 const wdc = require("./routes/wdcRoute");
+const fpo = require("./routes/fpoRoute");
 
 app.use('/api/user', user);
 app.use('/api/auth', auth);
 app.use('/api/chat', chat);
 app.use('/api/service', service);
-app.use('/api/wdc',wdc);
+app.use('/api/charts', charts);
+app.use('/api/wdc', wdc);
+app.use('/api/fpo', fpo);
 
 app.use((err,req,res,next) => {
     console.error(err);

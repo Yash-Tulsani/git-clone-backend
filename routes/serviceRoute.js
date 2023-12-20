@@ -7,4 +7,6 @@ router.get('/:id', ServiceRoutes.getServiceById);
 router.get('/', ServiceRoutes.getServices)
 router.get('/get-all-services/:limit', ServiceRoutes.getAllServices);
 
+router.post("/", ServiceRoutes.postNewService);
+
 module.exports = router;
