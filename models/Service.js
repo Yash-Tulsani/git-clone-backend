@@ -5,9 +5,22 @@ const ServiceSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'WDC'
     },
+    WDC_name: {
+        type: String
+    },
     FPO_id:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'FPO'
+    },
+    FPO_name: {
+        type: String
+    },
+    seller_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    seller_name: {
+        type: String
     },
     name: {
         type: String,
@@ -15,11 +28,11 @@ const ServiceSchema = new mongoose.Schema({
         trim: true,
         maxlength: [50, 'Name cannot be more than 50 characters']
     },
-    type:{
-        type:String,
-        trim:true,
-        maxlength:[50,'Type cannot be more than 50 characters']
-    },
+    // type:{
+    //     type:String,
+    //     trim:true,
+    //     maxlength:[50,'Type cannot be more than 50 characters']
+    // },
     description: {
         type: String,
         required: [true, 'Please enter a description'],
@@ -65,6 +78,9 @@ const ServiceSchema = new mongoose.Schema({
     coordinates: [{
         type: Number
     }],
+    phoneNumber: {
+        type: Number
+    }
 });
 
 const Service = mongoose.model('Service', ServiceSchema);

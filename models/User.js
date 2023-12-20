@@ -37,10 +37,6 @@ const UserSchema = new mongoose.Schema({
         enum:['user','admin'],
         default:'user'
     },
-    FPO:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'FPO'
-    },
     address:{
         type:String,
         required:[true,'Please enter an address'],
@@ -63,12 +59,50 @@ const UserSchema = new mongoose.Schema({
     }],
     profilePicture:{
         type:String,
+        default: "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg"
     },
-    FPO_Role:{
-        type:String,
-        enum:['head','member'],
-        default:'member'
-    }
+
+    FPO:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'FPO'
+    },
+    percentageStake: [{
+        type: Number,
+        default: 0
+    }],
+    investedAmount: [{
+        type: Number,
+        default: 0
+    }],
+    fpoIncome: [{
+        type: Number,
+        default: 0
+    }],
+    fpoSellIncome: [
+        {
+            type: Number,
+            default: 0
+        }
+    ],
+    totalFPOIncome: {
+        type: Number,
+        default: 0
+    },
+    totalSellIncome: {
+        type: Number,
+        default: 0
+    },
+    FPO_invested: [
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'FPO'
+        }
+    ]
+    // FPO_Role:{
+    //     type:String,
+    //     enum:['head','member'],
+    //     default:'member'
+    // }
     
 }, { timestamps: true });
 

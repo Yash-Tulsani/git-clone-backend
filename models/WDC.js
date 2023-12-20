@@ -6,6 +6,9 @@ const WDCSchema = new mongoose.Schema({
         ref:'FPO',
         required:[true,'Please enter an FPO']
     },
+    FPO_name: {
+        type: String
+    },
     name:{
         type:String,
         required:[true,'Please enter a name'],
@@ -36,6 +39,19 @@ const WDCSchema = new mongoose.Schema({
     coordinates: [{
         type: Number
     }],
+    email: {
+        type: String
+    },
+    phoneNumber: {
+        type: Number
+    },
+    publicInvestment: {
+        type: Number
+    },
+    percentageOccupied: {
+        type: Number,
+        default: 0
+    }
 });
 
 const WDC = mongoose.model('WDC',WDCSchema);

@@ -22,11 +22,19 @@ const user = require("./routes/userRoute");
 const auth = require("./routes/authRoute");
 const chat = require("./routes/chatRoute");
 const service = require("./routes/serviceRoute");
+const charts = require("./routes/chartRoute");
+const wdc = require("./routes/wdcRoute");
+const fpo = require("./routes/fpoRoute");
+const transaction = require("./routes/transactionRoute");
 
 app.use('/api/user', user);
 app.use('/api/auth', auth);
 app.use('/api/chat', chat);
 app.use('/api/service', service);
+app.use('/api/charts', charts);
+app.use('/api/wdc', wdc);
+app.use('/api/fpo', fpo);
+app.use('/api/transaction', transaction);
 
 app.use((err,req,res,next) => {
     console.error(err);
@@ -46,5 +54,4 @@ app.get("*", (req,res)=>{
     })
 })
 
-
-
+module.exports = app;
