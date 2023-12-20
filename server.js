@@ -25,6 +25,7 @@ const service = require("./routes/serviceRoute");
 const charts = require("./routes/chartRoute");
 const wdc = require("./routes/wdcRoute");
 const fpo = require("./routes/fpoRoute");
+const transaction = require("./routes/transactionRoute");
 
 app.use('/api/user', user);
 app.use('/api/auth', auth);
@@ -33,6 +34,7 @@ app.use('/api/service', service);
 app.use('/api/charts', charts);
 app.use('/api/wdc', wdc);
 app.use('/api/fpo', fpo);
+app.use('/api/transaction', transaction);
 
 app.use((err,req,res,next) => {
     console.error(err);

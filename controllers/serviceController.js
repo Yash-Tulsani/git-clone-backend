@@ -91,7 +91,7 @@ exports.postNewService = async(req, res)=> {
             FPO_id: wdcDocument.FPO_id,
             FPO_name: wdcDocument.FPO_name,
             seller_id: userWithFPO._id,
-            seller_name: userWithFPO,
+            seller_name: userWithFPO.name,
             name: req.body.serviceName,
             description: req.body.serviceDescription,
             district: req.body.userDetails.district,

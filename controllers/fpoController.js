@@ -19,9 +19,14 @@ exports.joinFpo = async (req, res) => {
         const result1 = await User.updateOne({
             _id: user_id
         }, {
-            FPO: wdc_item.FPO_id,
-            percentageStake: stakePercentage,
-            investedAmount: amount
+            $push: {
+                FPO_invested: wdc_item.FPO_id,
+                percentageStake: stakePercentage,
+                investedAmount: amount,
+                fpoIncome: 0,
+                fpoSellIncome: 0
+            },
+            
         })
         res.json({
             success: true,

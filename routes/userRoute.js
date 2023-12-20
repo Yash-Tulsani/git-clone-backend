@@ -9,7 +9,9 @@ router.get('/', test);
 
 router.post('/fpo-create', fpo.createFPO)  
 
-router.get('/getIds', fpo.getIds)
+router.get('/getIds', fpo.getIds);
+
+router.get('/getUser/:user_id', fpo.getUserById)
 
 router.delete('/delete/:id', verifyToken, deleteUser.deleteUser);
 
