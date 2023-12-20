@@ -22,11 +22,13 @@ const user = require("./routes/userRoute");
 const auth = require("./routes/authRoute");
 const chat = require("./routes/chatRoute");
 const service = require("./routes/serviceRoute");
+const wdc = require("./routes/wdcRoute");
 
 app.use('/api/user', user);
 app.use('/api/auth', auth);
 app.use('/api/chat', chat);
 app.use('/api/service', service);
+app.use('/api/wdc',wdc);
 
 app.use((err,req,res,next) => {
     console.error(err);
