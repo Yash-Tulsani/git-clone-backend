@@ -131,18 +131,20 @@ const servicesList = [
 
 const getRandomService = ()=> servicesList[Math.floor(Math.random() * servicesList.length)];
 
-const generateServices = async (WDC)=> {
+const generateServices = async (WDC, users)=> {
     
   for(let i=0; i<20; i++) {
     const randomWDC = WDC[Math.floor(Math.random() * WDC.length)]
+    const seller = users[Math.floor(Math.random() * users.length)];
 
     const newService = new Service({
       WDC_id: randomWDC._id,
       WDC_name: randomWDC.name,
       FPO_id:randomWDC.FPO_id,
       FPO_name: randomWDC.FPO_name,
+      seller_id: seller._id,
+      seller_name: seller.name,
       name: getRandomService(),
-      type: `Service ${Math.floor(Math.random() * 6) + 1}`,
       description: "Temp Description",
       district: randomWDC.district,
       state: randomWDC.state,
@@ -151,10 +153,12 @@ const generateServices = async (WDC)=> {
       minQuantity: Math.floor(Math.random() * 10) + 10,
       category: `Category ${Math.floor(Math.random() * 6) + 1}`,
       date: new Date(),
+      phoneNumber: seller.phoneNumber
 
     })
 
     await newService.save();
+
 
   } 
 
@@ -188,33 +192,44 @@ const generateServices = async (WDC)=> {
 
 // }
 
-const generateTransactions = async (services, usersList) => {
-  const months = ['2023-01', '2023-02', '2023-03', '2023-04', '2023-05', '2023-06', '2023-07', '2023-08', '2023-09', '2023-10', '2023-11', '2023-12'];
+const generatePrice = (year) =>{
+  if(year==2021) {
+    return Math.floor(Math.random() * 10000) + 2000
+  } else if (year==2022) {
+    return Math.floor(Math.random() * 14000) + 4000
+  } else if (year==2023) {
+    return Math.floor(Math.random() * 18000) + 6000
+  }
+}
 
-  for (let i = 0; i < 30; i++) {
+const generateTransactions = async (services, usersList) => {
+  const months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  const years = [ 2021, 2022, 2023 ]
+  for (let i = 0; i < 200; i++) {
     const serv = services[Math.floor(Math.random() * services.length)];
     const buyer = usersList[Math.floor(Math.random() * usersList.length)];
     
     // Choose a random month from the months array
     const randomMonth = months[Math.floor(Math.random() * months.length)];
+    const randomYear = years[Math.floor(Math.random() * years.length)];
 
     // Set the date to a random day within the chosen month
     const randomDay = Math.floor(Math.random() * 28) + 1; // Assuming all months have 28 days
-    const newDate = new Date(`${randomMonth}-${randomDay}`);
-    console.log(newDate, "New Date");
+    const newDate = new Date(`${randomYear}-${randomMonth}-${randomDay}`);
+    // console.log(newDate, "New Date");
 
     const newTransaction = new Transaction({
       buyer: buyer._id,
       buyer_name: buyer.name,
-      seller: serv.FPO_id,
-      seller_name: serv.FPO_name,
+      seller: serv.seller_id,
+      seller_name: serv.seller_id,
       WDC: serv.WDC_id,
       WDC_name: serv.WDC_name,
       service: serv._id,
       service_name: serv.name,
       district: getRandomDistrict(),
       state: serv.state,
-      amount: Math.floor(Math.random() * 18000) + 2000,
+      amount: generatePrice(randomYear),
       date: newDate,
     });
 
@@ -231,9 +246,9 @@ exports.GenerateData = async ()=>{
         const wdcs = await WDC.find({});
         // generateWDC(fpos)
         const services = await Service.find({});
-        // generateServices(wdcs)
+        // generateServices(wdcs, users)
         // const services = await Service.find({});
-        // generateTransactions(services, users);
+        generateTransactions(services, users);
         console.log("Currently Not generating Any Data");
 
     } catch (error) {
