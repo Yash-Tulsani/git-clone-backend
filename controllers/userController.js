@@ -21,3 +21,24 @@ exports.getIds = async (req, res) => {
      const ids = await User.find({})
      res.json(ids)
 }
+
+exports.getUserById = async (req,res) => {
+
+    try {
+
+        const {user_id} = req.params;
+
+        const getUser = await User.findById(user_id).populate(["FPO_invested"]);
+        console.log(getUser);
+        res.json(getUser);
+
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({
+            success: false,
+            error : "Internal Server error",
+            statusCode: 500,
+        }) 
+    }
+
+}

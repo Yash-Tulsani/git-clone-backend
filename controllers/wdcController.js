@@ -48,8 +48,6 @@ exports.postWdc = async(req,res)=>{
         })
     }
 
-    
-
 
 }
 
@@ -59,12 +57,15 @@ exports.getWdcAll = async (req,res)=>{
     try {
         const list = await WDC.find({}).sort({_id: -1})
         // const members = [];
-
+        console.log(list,"This is the list");
         const members = await Promise.all(
             list.map(async (elm) => {
-              const usersList = await User.find({
-                FPO: elm.FPO_id,
-              });
+                const usersList = await User.find({
+                    FPO_invested: { $all: [elm.FPO_id ] },
+                  });
+            //   const usersList = await User.find({
+            //     FPO: elm.FPO_id,
+            //   });
               return usersList;
             })
           );

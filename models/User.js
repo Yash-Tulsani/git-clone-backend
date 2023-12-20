@@ -66,18 +66,38 @@ const UserSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'FPO'
     },
-    percentageStake: {
+    percentageStake: [{
         type: Number,
         default: 0
-    },
-    investedAmount: {
+    }],
+    investedAmount: [{
         type: Number,
         default: 0
-    },
+    }],
+    fpoIncome: [{
+        type: Number,
+        default: 0
+    }],
+    fpoSellIncome: [
+        {
+            type: Number,
+            default: 0
+        }
+    ],
     totalFPOIncome: {
         type: Number,
         default: 0
     },
+    totalSellIncome: {
+        type: Number,
+        default: 0
+    },
+    FPO_invested: [
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'FPO'
+        }
+    ]
     // FPO_Role:{
     //     type:String,
     //     enum:['head','member'],
