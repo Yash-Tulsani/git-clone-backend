@@ -150,3 +150,99 @@ exports.stateChart = async (req, res) => {
     }
 
 }
+
+exports.fpoChart = async (req,res)=>{
+
+    const {year} = req.params;
+    
+    console.log( year, "There is the data");
+
+    let reply = {
+        labels: ["Tambaram Farmer Producer Organization", "Wasteshed Royapettah", "Wasteshed Saidapet"],
+        datasets: [
+            {
+                label: `FPO State Wise Revenue`,
+                backgroundColor: '#0E2E50',
+                data: [],
+            },
+        ],
+    };
+
+    try {
+        
+        const aggregateResult = await Transaction.aggregate([
+            {
+                $match: {
+                    date: { $gte: new Date(`${year}-01-01`), $lt: new Date(`${Number(year) + 1}-01-01`) },
+                },
+            },
+            {
+              $group: {
+                _id: '$WDC_name', 
+                totalAmount: { $sum: '$amount' }, 
+              },
+            },
+          ]);
+
+        
+        aggregateResult.map(elm=>{
+            reply.datasets[0].data.push(elm.totalAmount);
+        })
+
+
+        
+
+        res.json(reply);
+
+    } catch (err) {
+        
+    }
+}
+
+exports.fpoChart = async (req,res)=>{
+
+    const {year} = req.params;
+    
+    console.log( year, "There is the data");
+
+    let reply = {
+        labels: ["Tambaram Farmer Producer Organization", "Wasteshed Royapettah", "Wasteshed Saidapet"],
+        datasets: [
+            {
+                label: `FPO State Wise Revenue`,
+                backgroundColor: '#0E2E50',
+                data: [],
+            },
+        ],
+    };
+
+    try {
+        
+        const aggregateResult = await Transaction.aggregate([
+            {
+                $match: {
+                    date: { $gte: new Date(`${year}-01-01`), $lt: new Date(`${Number(year) + 1}-01-01`) },
+                },
+            },
+            {
+              $group: {
+                _id: '$WDC_name', 
+                totalAmount: { $sum: '$amount' }, 
+              },
+            },
+          ]);
+
+        
+        aggregateResult.map(elm=>{
+            reply.datasets[0].data.push(elm.totalAmount);
+        })
+
+
+        
+
+        res.json(reply);
+
+    } catch (err) {
+        
+    }
+}
