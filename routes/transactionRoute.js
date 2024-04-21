@@ -4,5 +4,7 @@ const TransactionRoutes = require('../controllers/transactionController.js');
 
 router.get('/:user_id', TransactionRoutes.getTransactionHistory);
 
+router.post('/', TransactionRoutes.postTransactionDone);
+
 
 module.exports = router;

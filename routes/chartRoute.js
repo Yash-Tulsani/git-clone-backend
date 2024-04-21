@@ -11,4 +11,9 @@ router.get("/districtChart/:state/:year", chartControllers.districtChart);
 //Charts for State Wise of that :year
 router.get("/stateChart/:year", chartControllers.stateChart);
 
+//Charts for State Wise of that :year
+router.get("/fpoChart/:year", chartControllers.fpoChart);
+
+router.get("/fpoChart1/:year", chartControllers.fpoChart);
+
 module.exports = router;

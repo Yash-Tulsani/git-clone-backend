@@ -222,7 +222,7 @@ const generateTransactions = async (services, usersList) => {
       buyer: buyer._id,
       buyer_name: buyer.name,
       seller: serv.seller_id,
-      seller_name: serv.seller_id,
+      seller_name: serv.seller_name,
       WDC: serv.WDC_id,
       WDC_name: serv.WDC_name,
       service: serv._id,
